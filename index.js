@@ -24,18 +24,14 @@ async function getIssues(labels) {
 	return [].concat.apply([], lists)
 }
 
-async function issues(req, res, next) {
+async function issues(_, res, next) {
 	if (new Date() - cache.at > 10 * 1000) {
 		cache.at = new Date(); 
 
-		console.log('grabbing...');
 		getIssues(['boop', 'superboop']).then(issues => {
 			cache.issues = issues;
-			console.log('grabbed');
 		}).catch(err => console.error('error:', err));
 	}
-
-	console.log('requested');
 	
 	res.locals.issues = cache.issues;
 	next();
