@@ -18,7 +18,13 @@ async function getIssues(labels) {
 			// We can't just list all the labels here as that
 			// does an AND but we want an OR.
 			labels: [label],
-		})
+		});
+
+    if (lists.find(i => i.url === issues.data.url)){
+      // duplicate!?
+      continue;
+    }
+
 		lists.push(issues.data)
 	}
 	return [].concat.apply([], lists)
