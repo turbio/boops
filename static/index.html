@@ -1,72 +1,92 @@
 <html ng-app="boops">
-	<head>
-		<title>boops...</title>
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-		<link rel="manifest" href="/site.webmanifest">
-     	<meta http-equiv="refresh" content="600">
-      <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
-	  
-	  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-	  <script type="text/javascript" src="
-https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-	  <script type="text/javascript" src="/favico-0.3.10.min.js"></script>
-	  <script type="text/javascript" src="/ui.js"></script>
-	  <style>
-		.name { 
+
+<head>
+	<title>boops...</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<meta http-equiv="refresh" content="600">
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js">
+	</script>
+	<script type="text/javascript" src="
+https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.js">
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js">
+	</script>
+	<script type="text/javascript" src="/favico-0.3.10.min.js">
+	</script>
+	<script type="text/javascript" src="/ui.js">
+	</script>
+	<style>
+		.name {
 			position: absolute;
 			width: 600px;
 			max-width: 95%;
 			min-height: 80px;
 
 		}
+
 		.name h4 {
 			margin-right: 60px;
 			text-overflow: ellipsis;
-			white-space: nowrap; 
-  			overflow: hidden;
+			white-space: nowrap;
+			overflow: hidden;
 		}
+
 		.name {
-			transition:1s linear all;
+			transition: 1s linear all;
 		}
-		pre { display: none }
-		div:hover pre { display: block }
-    .more-fade:after {
-      content  : "";
-      position : fixed;
-      z-index  : 1;
-      bottom   : 0;
-      left     : 0;
-      pointer-events   : none;
-      background-image : linear-gradient(to bottom, 
-                         rgba(34, 34, 34, 0), 
-                         rgba(34, 34, 34, 1) 100%);
-      width    : 100%;
-      height   : 3em;
-    }
 
-/* The finishing CSS styles for the enter animation */
-.fade.ng-enter.ng-enter-active {
+		pre {
+			display: none
+		}
 
-}
-	  </style>
-	</head>
-	<body ng-controller="ctrl" ng-class="{'more-fade': scrolls()}">
-		<div class="container-fluid">
+		div:hover pre {
+			display: block
+		}
+
+		.more-fade:after {
+			content: "";
+			position: fixed;
+			z-index: 1;
+			bottom: 0;
+			left: 0;
+			pointer-events: none;
+			background-image: linear-gradient(to bottom,
+			rgba(34, 34, 34, 0),
+			rgba(34, 34, 34, 1) 100%);
+			width: 100%;
+			height: 3em;
+		}
+
+		/* The finishing CSS styles for the enter animation */
+		.fade.ng-enter.ng-enter-active {}
+	</style>
+</head>
+
+<body ng-controller="ctrl" ng-class="{'more-fade': scrolls()}">
+	<div class="container-fluid">
 		<div ng-if="issues.length === 0">
-      <h1>No boops booped.</h1>
-    </div>
+			<h1>No boops booped. 🎉</h1>
+		</div>
 		<div class="name slide" ng-repeat="(i, info) in issues | orderBy: 'updated_at' track by info.url" style="top: {{17+i*100}}px">
-			
+
 			<div ng-class="{{style(info)}}" style="position: relative">
 				<img style="position: absolute; right: 10px; height: 60px; border-radius: 25%" src="{{info.user.avatar_url}}" />
-			
-			<a href="{{info.pull_request.html_url}}" target="_blank">
-
-				<h4>{{info.title}}
-				</h4>
-			</a>
+			<h4>
+        <a href="{{info.pull_request.html_url}}" target="_blank">
+          {{info.title}}
+        </a>
+        &nbsp;
+        <a
+          href="{{info.pull_request.html_url}}"
+          onclick="window.open(this.href, 'newwindow', 'width=800,height=600'); return false">
+          ⬈
+        </a>
+      </h4>
 			{{info.repository.full_name}} · {{d(info.updated_at)}}
 			</div>
 		</div>

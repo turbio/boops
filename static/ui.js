@@ -49,7 +49,7 @@ m.controller("ctrl", function($http, $scope) {
           if (data.length) {
             document.title = data.length + " boops";
           } else {
-            document.title = "no boops";
+            document.title = "no boops 🎉";
           }
         }
         prevData = data;
