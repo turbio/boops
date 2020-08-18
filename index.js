@@ -20,13 +20,9 @@ async function getIssues(labels) {
 			labels: [label],
 		});
 
-    if (lists.find(i => i.url === issues.data.url)){
-      // duplicate!?
-      continue;
-    }
-
 		lists.push(issues.data)
 	}
+
 	return [].concat.apply([], lists)
 }
 
