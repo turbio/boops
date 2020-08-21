@@ -31,11 +31,14 @@ td {
 }
 	</style>
 	<body ng-controller="ctrl">
-		<div ng-if="issues.length === 0"><h1>no boops 🎉</h1></div>
+		<div ng-if="rest.length === 0"><h1>no boops 🎉</h1></div>
 		<table>
-			<tr ng-repeat="(i, info) in issues | orderBy: 'updated_at' track by info.url">
+			<tr ng-repeat="(i, info) in rest | orderBy: 'updated_at' track by info.url">
 				<td><img src="{{info.user.avatar_url}}" /></td>
-				<td><a href="{{info.pull_request.html_url}}" target="_blank">{{info.title}}</a></td>
+				<td>
+          <span ng-if="info.bop" style="font-size: 2em">🎶</span>
+          <a href="{{info.pull_request.html_url}}" target="_blank">{{info.title}}</a>
+        </td>
 				<td>
           <a
             href="{{info.pull_request.html_url}}"

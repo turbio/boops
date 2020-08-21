@@ -43,7 +43,22 @@ m.controller("ctrl", function($http, $scope) {
 
         firstUpdate = false;
 
-        $scope.issues = data;
+        data.forEach(i => {i.bop = !!i.labels.find(l => l.name === 'bop')})
+
+        const bops = [];
+        const rest = [];
+        for (const pr of data) {
+          if (pr.labels.find(l => l.name === 'bop')) {
+            bops.push(pr);
+            continue;
+          }
+
+          rest.push(pr);
+        }
+
+        $scope.bops = bops;
+        $scope.rest = rest;
+
         if (data.length !== prevData.length) {
           favicon.badge(data.length);
           if (data.length) {
@@ -52,6 +67,7 @@ m.controller("ctrl", function($http, $scope) {
             document.title = "no boops 🎉";
           }
         }
+
         prevData = data;
 
         setTimeout(update, 1000);
