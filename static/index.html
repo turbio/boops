@@ -69,11 +69,12 @@ https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.js">
 
 <body ng-controller="ctrl" ng-class="{'more-fade': scrolls()}">
 	<div class="container-fluid">
-		<div ng-if="bops.length === 0 && superboops.length === 0 && rest.length === 0">
+		<div ng-if="bops.length === 0 && rest.length === 0">
 			<h1>No boops booped. 🎉</h1>
+			<p>Replit is now feature complete</p>
       <iframe src="https://rmssexy.masfrost.repl.co/"></iframe>
 		</div>
-    <div class="name slide" ng-repeat="(i, info) in bops | orderBy: 'updated_at' track by info.url" style="top: 0px">
+    <div class="name slide" ng-repeat="(i, info) in bops | orderBy: 'updated_at' track by $index" style="top: 0px">
 			<div ng-class="{{style(info)}}" style="position: relative">
 				<img style="position: absolute; right: 10px; height: 60px; border-radius: 25%" src="{{info.user.avatar_url}}" />
         <h4>
@@ -91,8 +92,8 @@ https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.js">
 			  {{info.repository.full_name}} · {{d(info.updated_at)}}
 			</div>
 		</div>
-    <div ng-if="bops.length > 0 && rest.length > 0" style="white-space: pre; font-size: 2em; width: 27em; overflow: hidden; border-bottom: solid 2px">🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥</div>
-		<div class="name slide" ng-repeat="(i, info) in rest | orderBy: 'updated_at' track by info.url" style="top: 0px">
+    <div ng-if="bops.length > 0 && rest.length > 0" style="white-space: pre; font-size: 2em; width: 600px; overflow: hidden; border-bottom: solid 2px">🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥</div>
+		<div class="name slide" ng-repeat="(i, info) in rest | orderBy: 'updated_at' track by $index" style="top: 0px; opacity: .85">
 			<div ng-class="{{style(info)}}" style="position: relative">
 				<img style="position: absolute; right: 10px; height: 60px; border-radius: 25%" src="{{info.user.avatar_url}}" />
         <h4>
