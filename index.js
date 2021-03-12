@@ -23,7 +23,15 @@ async function getIssues(labels) {
 		lists.push(issues.data)
 	}
 
-	return [].concat.apply([], lists)
+	const flat = [].concat.apply( [], lists, )
+	return flat.map(l => ({
+			labels: l.labels,
+			title: l.title,
+			repository: { full_name: l.repository.full_name },
+			updated_at: l.updated_at,
+			pull_request: { html_url: l.pull_request.html_url },
+			user: { avatar_url: l.user.avatar_url },
+		}))
 }
 
 async function issues(_, res, next) {
